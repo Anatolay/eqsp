@@ -1,15 +1,6 @@
 name: Spell-checking
 
-on:
-  push:
-    branches:
-      - master
-    tags:
-      - '*'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+on: [push, pull_request]
 
 jobs:
   readme_aspell:
