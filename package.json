@@ -1,6 +1,6 @@
 {
   "name": "eqsp",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A small library to pass EQSP course lab",
   "main": "index.js",
   "scripts": {

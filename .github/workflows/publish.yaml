@@ -12,27 +12,11 @@ on:
 
 jobs:
 
-  changes:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-      - id: check
-        uses: EndBug/version-check@v2
-        with:
-          diff-search: true
-          file-name: package.json
-          token: ${{ secrets.GITHUB_TOKEN }}
-
   publish:
     name: Publish the package
     # Check that testing workflow has passed
     needs: [changes]
-    if: ${{ (github.event.workflow_run.conclusion == 'success') && (needs.changes.check.outputs.changed == 'true') }}
+    if: ${{ (github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
