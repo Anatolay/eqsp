@@ -11,10 +11,25 @@ on:
       - master
 
 jobs:
-  publish:
-    # Check that testing workflow has passed
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+  changes:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
+    steps:
+      - id: check
+        uses: EndBug/version-check@v2
+        with:
+          diff-search: true
+          file-name: package.json
+          token: ${{ secrets.GITHUB_TOKEN }}
+          static-checking: localIsNew
+
+  publish:
+    name: Publish the package
+    # Check that testing workflow has passed
+    if: ${{ (github.event.workflow_run.conclusion == 'success') && (steps.check.outputs.changed == 'true') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
