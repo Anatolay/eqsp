@@ -4,7 +4,6 @@ on:
   workflow_run:
     workflows: ["Check"]
     types:
-      - 
       - completed
     branches:
       - master

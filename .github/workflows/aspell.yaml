@@ -1,0 +1,23 @@
+name: Spellchecking
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  readme_aspell:
+    name: README spellchecking
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: reitermarkus/aspell@main
+        with:
+          files: README.md
+          args: --lang=en_GB --mode=markdown
