@@ -1,0 +1,14 @@
+{
+  "name": "eqsp",
+  "version": "0.0.0",
+  "description": "A small library to pass EQSP course lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
