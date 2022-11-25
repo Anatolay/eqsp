@@ -14,4 +14,4 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: run tests and collect coverage
-        run: npm test -- --coverage # --coverageThreshold="{\"global\": {\"branches\": 80} }"
+        run: npm test -- --coverage --coverageThreshold="{\"global\": {\"branches\": 80} }"
