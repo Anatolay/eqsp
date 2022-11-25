@@ -1,4 +1,4 @@
-name: Spellchecking
+name: Spell-checking
 
 on:
   push:
