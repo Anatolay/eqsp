@@ -27,7 +27,8 @@ jobs:
   publish:
     name: Publish the package
     # Check that testing workflow has passed
-    if: ${{ (github.event.workflow_run.conclusion == 'success') && (steps.check.outputs.changed == 'true') }}
+    needs: [changes]
+    if: ${{ (github.event.workflow_run.conclusion == 'success') && (needs.changes.check.outputs.changed == 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
